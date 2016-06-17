@@ -19,3 +19,4 @@ For detailed description please visit https://mandalsubhajit.wordpress.com/2016/
 * 4_naive_bayes.py : Naive Bayes
 * blend_models.py : Blending models 1-4 using weighted average of predicted probabilities
 * combine_results.py : Stack output from blending over the leakage solution
+* run_loop.cmd : batch file to run codes in loop, e.g. run_loop 1_random_forest.py 10. This will run the code 10 times.
