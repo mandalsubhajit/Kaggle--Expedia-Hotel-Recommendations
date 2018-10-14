@@ -30,7 +30,7 @@ def map5eval(preds, actual):
     metric /= actual.shape[0]
     return metric
 
-def bin_time(t):
+def bin_time(t):    #function to return the bin time based on input parameter t
     if t < 0:
         x = 0
     elif t < 2:
@@ -133,8 +133,7 @@ for epoch in range(1):
 with open('../output/probs/bnb.pkl', 'wb') as f:
     pickle.dump(clf, f)
 
-count = 0
-chunksize = 10000
+count, chunksize = 0, 10000
 preds = np.empty((0,100))
 #chunk = pd.read_csv('../input/test.csv', parse_dates=['date_time', 'srch_ci', 'srch_co'], nrows=10000)
 reader = pd.read_csv('../input/test.csv', parse_dates=['date_time', 'srch_ci', 'srch_co'], chunksize=chunksize)
@@ -155,7 +154,7 @@ for chunk in reader:
     
     pred = clf.predict_proba(X)
     preds = np.vstack((preds, pred))
-    count = count + chunksize
+    count += chunksize
     print('%d rows completed' % count)
 
 del clf
