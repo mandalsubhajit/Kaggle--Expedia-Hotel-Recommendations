@@ -65,8 +65,8 @@ submission = pd.read_csv('../input/sample_submission.csv')
 #pre_process(test)
 
 clf = RandomForestClassifier(n_estimators=0, n_jobs=-1, warm_start=True)
-count = 0
-chunksize = 200000
+count,chunksize = 0 , 200000
+
 #preds = np.zeros((test.shape[0], 100))
 
 #train = pd.read_csv('../input/train.csv', parse_dates=['date_time', 'srch_ci', 'srch_co'], skiprows=0, nrows=1000)
@@ -90,7 +90,7 @@ for chunk in reader:
         #preds += np.vstack(tuple([clf.predict_proba(test.loc[i*chunksize:min((i+1)*chunksize,test.shape[0]),:]) for i in range(int(test.shape[0]/100000))]))
         #preds += clf.predict_proba(test)
         
-        count = count + chunksize
+        count += chunksize
         print('%d rows completed' % count)
         if(count/chunksize == 300):
             break
